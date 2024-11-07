@@ -91,12 +91,20 @@ INSERT INTO cart (orderID, productID, amount, price_itens) VALUES
 ((SELECT id FROM orders WHERE clientID = (SELECT id FROM client WHERE name = 'Lucas Almeida')), (SELECT id FROM products WHERE name = 'TV 50" 4K'), 1, 2500);
 
 
-select client.name, products.name, cart.amount, orders.created_at
+select client.name as Nome, products.name as Produtos, cart.amount as Quantidade, orders.created_at as Pedido_Data
 from client
 inner join orders
 on orders.clientID = client.id join cart on cart.orderID = orders.id join products on products.id = cart.productID
-where 
+where client.name = 'João Silva';
 
+select suppliers.company_name as Empresa, suppliers.company_number as Contato, suppliers.company_adress as Endereço,  products.name as Produtos, products.category as Categoria
+from suppliers
+inner join products
+on products.id = suppliers.productID;
 
-
+select products.name as Produto, cart.amount as Quantidade, orders.total_value as Valor_Total, orders.created_at as Pedido_Data,client.name as Cliente, client.email as Email, client.adress as Endereço
+from products
+inner join cart
+on cart.productID = products.id join orders on orders.id = cart.orderID join client on client.id = orders.clientID
+where products.name = 'Teclado Mecânico';
 
