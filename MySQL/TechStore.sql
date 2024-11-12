@@ -319,7 +319,7 @@ INSERT INTO cart (order_id, product_id, amount, price_itens) VALUES
 (50, 5, 4, 220.00);    -- Pedido 50: 4 unidades do Mouse Logitech MX
 
 
-
+/*SQL query - Start*/
 select client.name as Nome, products.name as Produtos, cart.amount as Quantidade, orders.created_at as Pedido_Data
 from client
 inner join orders
@@ -336,4 +336,33 @@ from products
 inner join cart
 on cart.product_id = products.id join orders on orders.id = cart.order_id join client on client.id = orders.client_id
 where products.id = 1;
+/*SQL query - End*/
+
+
+/*Trigger - Start*/
+create table above30years(
+id INT AUTO_INCREMENT primary key,
+name varchar(50) not null,
+email varchar(100) unique,
+adress varchar(80) not null,
+birthday date not null
+);
+
+DELIMITER $$
+
+CREATE TRIGGER Acima_30anos
+AFTER INSERT ON Client
+FOR EACH ROW
+BEGIN
+    IF TIMESTAMPDIFF(YEAR, NEW.birthday, CURDATE()) > 30 THEN
+		insert into above30years(id,name,email,adress,birthday)
+		values(NEW.id,NEW.name,NEW.email,NEW.adress,NEW.birthday);
+    END IF;
+END$$
+
+DELIMITER ;
+
+show triggers;
+select * from above30years;
+/*Trigger - End*/
 

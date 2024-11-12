@@ -125,12 +125,12 @@ from authors
 inner join books
 on books.AuthorID = authors.AuthorID join loans on loans.BookID = books.BookID;
 
-select books.title, loans.MemberID
-from books
-inner join loans
-on loans.BookID = books.BookID;
-
-select count(loanID) as Livros_Emprestados from loans;
+/*10*/
+select loans.LoanID, members.Name, books.Title, loans.LoanDate
+from loans
+inner join books
+on books.BookID=  loans.BookID join members on members.MemberID = loans.MemberID;
+ 
 
 
 
