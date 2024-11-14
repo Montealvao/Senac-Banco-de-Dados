@@ -61,23 +61,30 @@ INSERT INTO Books (BookID, Title, AuthorID, GenreID, PublicationYear) VALUES
 ('9a3d1f0d-214e-4693-a516-1e0b498a1340', 'A Game of Thrones', '8abec1b5-bb73-4e0d-be58-bb91d7a5da2c', '450f6503-feb9-4934-a6c4-32a4b0bb6e11', 1996),
 ('3910deb5-12f6-4333-a10b-0a51eac32d5b', 'The Hobbit', '45c0fa42-23ef-48b9-bd1e-0fccfc65dd2b', '450f6503-feb9-4934-a6c4-32a4b0bb6e11', 1937),
 ('cb95bc0b-2626-424c-bbd7-c5a3f01fc486', 'Harry Potter and the Chamber of Secrets', 'fa9dfafb-3e4d-4d78-9e58-a4a0ccc86e41', '450f6503-feb9-4934-a6c4-32a4b0bb6e11', 1998),
-('8dbffd03-d2d6-4ecc-91a3-274314a50531', 'Murder on the Orient Express', 'a315eafc-f937-43fd-8366-ea4156760cc2', 'b3945aaf-d974-4a78-ba38-95adadb1ba49', 1934);*/
-('5e989151-e83c-4046-973b-be20c30cc5fa','Hard Life','d14f992b-465c-4361-a5e4-7558e93b19e5','205dd251-cea4-4390-acd6-de00c5605b96',2024);
+('8dbffd03-d2d6-4ecc-91a3-274314a50531', 'Murder on the Orient Express', 'a315eafc-f937-43fd-8366-ea4156760cc2', 'b3945aaf-d974-4a78-ba38-95adadb1ba49', 1934);
+('5e989151-e83c-4046-973b-be20c30cc5fa','Hard Life','d14f992b-465c-4361-a5e4-7558e93b19e5','205dd251-cea4-4390-acd6-de00c5605b96',2024)*/
+(uuid(),'Space Race','d14f992b-465c-4361-a5e4-7558e93b19e5','51216214-eda8-4420-8763-56e81160ef05',2023);
 
 select * from Members;
 INSERT INTO Members (MemberID, Name, JoinDate) VALUES
- ('8201d2dc-a8f6-44c6-9b43-cbd5a3c788e7', 'Alice Johnson', '2023-05-10'),
+ /*('8201d2dc-a8f6-44c6-9b43-cbd5a3c788e7', 'Alice Johnson', '2023-05-10'),
  ('3cd53aae-ff6f-4a8f-b051-003f70c5b375', 'Bob Smith', '2022-11-05'),
  ('7b5bef88-546c-4844-9198-f06d8d0b8ebd', 'Carol White', '2023-01-15'),
- ('e5b1b0d3-5204-4de9-9246-81ed32059fb9', 'Dave Black', '2023-07-20');
+ ('e5b1b0d3-5204-4de9-9246-81ed32059fb9', 'Dave Black', '2023-07-20');*/
+ (uuid(),'Jason Dohn','2024-05-21');
 
 select * from loans;
 INSERT INTO Loans (LoanID, BookID, MemberID, LoanDate, DueDate, ReturnDate) VALUES
- (1, '74a0ff62-63ab-449d-8446-5a34e4b62aaa', '8201d2dc-a8f6-44c6-9b43-cbd5a3c788e7', '2024-01-10', '2024-01-17', '2024-01-16'),
+ /*(1, '74a0ff62-63ab-449d-8446-5a34e4b62aaa', '8201d2dc-a8f6-44c6-9b43-cbd5a3c788e7', '2024-01-10', '2024-01-17', '2024-01-16'),
  (2, '9a3d1f0d-214e-4693-a516-1e0b498a1340', '3cd53aae-ff6f-4a8f-b051-003f70c5b375', '2024-02-05', '2024-02-12', NULL),
  (3, '74a0ff62-63ab-449d-8446-5a34e4b62aaa', '7b5bef88-546c-4844-9198-f06d8d0b8ebd', '2024-01-15', '2024-01-22', '2024-01-21'),
  (4, '3910deb5-12f6-4333-a10b-0a51eac32d5b', 'e5b1b0d3-5204-4de9-9246-81ed32059fb9', '2024-01-20', '2024-01-27', NULL),
- (5, '8dbffd03-d2d6-4ecc-91a3-274314a50531', '3cd53aae-ff6f-4a8f-b051-003f70c5b375', '2024-03-01', '2024-03-08', '2024-03-05');
+ (5, '8dbffd03-d2d6-4ecc-91a3-274314a50531', '3cd53aae-ff6f-4a8f-b051-003f70c5b375', '2024-03-01', '2024-03-08', '2024-03-05')*/
+ (6,'d28aa494-a2b5-11ef-9f4a-d09466e13136','e5b1b0d3-5204-4de9-9246-81ed32059fb9','2024-10-01','2024-10-20',null),
+ (7,'d28aa494-a2b5-11ef-9f4a-d09466e13136','668f1767-a2ba-11ef-9f4a-d09466e13136','2024-10-02','2024-10-13','2024-11-10'),
+ (8,'cb95bc0b-2626-424c-bbd7-c5a3f01fc486','668f1767-a2ba-11ef-9f4a-d09466e13136','2024-11-10','2024-11-28','2024-11-18'),
+ (9,'5e989151-e83c-4046-973b-be20c30cc5fa','668f1767-a2ba-11ef-9f4a-d09466e13136','2024-11-14','2024-11-27','2024-11-23');
+
 
 /*1*/
 select books.title, authors.name, genres.GenreName, books.PublicationYear
@@ -126,10 +133,17 @@ inner join books
 on books.AuthorID = authors.AuthorID join loans on loans.BookID = books.BookID;
 
 /*10*/
-select loans.LoanID, members.Name, books.Title, loans.LoanDate
+select loans.LoanID, members.Name as Nome, books.Title as Livro, loans.LoanDate as Data_Empréstimo
 from loans
 inner join books
-on books.BookID=  loans.BookID join members on members.MemberID = loans.MemberID;
+on books.BookID=  loans.BookID join members on members.MemberID = loans.MemberID
+where loans.LoanDate >= DATE_SUB(CURDATE(), INTERVAL 9 MONTH) and loans.LoanDate <CURDATE();
+
+
+UPDATE Loans
+SET ReturnDate = null
+WHERE LoanID = 9;
+
  
 
 
